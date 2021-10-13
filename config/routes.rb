@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :districts, only: [:index, :show]
   resources :statuses, only: [:index, :show]
-  resources :users, only: [:index, :show]
+  resources :users
   resources :line_items
   resources :carts
   resources :sessions, only: [:create]
