@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  user: one
+  fullname: MyString
+  country: MyString
+  city: MyString
+  district: one
+  address: MyText
+  phone: MyString
+  cart: one
+  subtotal: 1
+  total: 1
+  status: one
+
+two:
+  id: 
+  user: two
+  fullname: MyString
+  country: MyString
+  city: MyString
+  district: two
+  address: MyText
+  phone: MyString
+  cart: two
+  subtotal: 1
+  total: 1
+  status: two

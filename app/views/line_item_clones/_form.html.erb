@@ -1,0 +1,17 @@
+<%= form_with(model: line_item_clone) do |form| %>
+  <% if line_item_clone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(line_item_clone.errors.count, "error") %> prohibited this line_item_clone from being saved:</h2>
+
+      <ul>
+        <% line_item_clone.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  warna: MyString
+  uploadedFileUrl: MyString
+  slug: MyString
+  product: one
+
+two:
+  id: 
+  warna: MyString
+  uploadedFileUrl: MyString
+  slug: MyString
+  product: two
