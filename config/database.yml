@@ -16,6 +16,7 @@ default: &default
   username: xrrflgivsaevyl
   password: b555ae8694e01c2c520b289e70afe36c53cfbc9c17ff8bbf0d5e0a746f4038ee
   host: ec2-34-203-91-150.compute-1.amazonaws.com
+  
 
 development:
   <<: *default
