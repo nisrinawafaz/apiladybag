@@ -4,7 +4,7 @@ include CurrentCart
 
   # GET /line_items or /line_items.json
   def index
-    @line_items = LineItem.all
+    @line_items = LineItem.all.order('created_at ASC')
     render json: @line_items
   end
 

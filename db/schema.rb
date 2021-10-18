@@ -12,13 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_10_15_031217) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "email_verified_at"
+    t.timestamp "email_verified_at"
     t.string "password"
     t.string "remember_token"
     t.datetime "created_at", precision: 6, null: false
@@ -26,30 +23,30 @@ ActiveRecord::Schema.define(version: 2021_10_15_031217) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "carts", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "line_items"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "line_items"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.string "product"
+    t.string "product", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "districts", force: :cascade do |t|
+  create_table "districts", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "feedbacks", force: :cascade do |t|
+  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "title"
@@ -58,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_031217) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "images", force: :cascade do |t|
+  create_table "images", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "warna"
     t.string "uploadedFileUrl"
     t.string "slug"
@@ -68,21 +65,11 @@ ActiveRecord::Schema.define(version: 2021_10_15_031217) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
-  create_table "line_item_clones", force: :cascade do |t|
+  create_table "line_items", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.integer "quantity", default: 1
     t.bigint "image_id"
     t.string "image"
-    t.integer "price_cents"
-    t.bigint "cart_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["image_id"], name: "index_line_item_clones_on_image_id"
-  end
-
-  create_table "line_items", force: :cascade do |t|
-    t.integer "quantity", default: 1
-    t.bigint "image_id"
-    t.string "image"
+    t.string "product_name"
     t.integer "price_cents"
     t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false
@@ -91,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_031217) do
     t.index ["image_id"], name: "index_line_items_on_image_id"
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "payments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.string "fullname"
     t.string "country"
@@ -105,47 +92,46 @@ ActiveRecord::Schema.define(version: 2021_10_15_031217) do
     t.bigint "status_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_payments_on_cart_id"
     t.index ["district_id"], name: "index_payments_on_district_id"
     t.index ["status_id"], name: "index_payments_on_status_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.bigint "category_id"
     t.text "description"
     t.string "model"
-    t.string "image"
+    t.string "image", null: false
     t.integer "price_cents"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "statuses", force: :cascade do |t|
+  create_table "statuses", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "username", null: false
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "address"
-    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "carts", "users"
   add_foreign_key "images", "products"
-  add_foreign_key "line_item_clones", "images"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "images"
+  add_foreign_key "payments", "carts"
   add_foreign_key "payments", "districts"
   add_foreign_key "payments", "statuses"
   add_foreign_key "payments", "users"
