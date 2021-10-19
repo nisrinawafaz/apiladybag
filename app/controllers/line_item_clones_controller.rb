@@ -28,7 +28,9 @@ class LineItemClonesController < ApplicationController
       cart_id: params['line_item_clone']['cart_id'],
       price_cents: params['line_item_clone']['price_cents'],
       image_id: params['line_item_clone']['image_id'],
-      quantity: params['line_item_clone']['quantity']
+      quantity: params['line_item_clone']['quantity'],
+      product_name: params['line_item_clone']['product_name']
+
   )
 
     if @line_item_clone.save
