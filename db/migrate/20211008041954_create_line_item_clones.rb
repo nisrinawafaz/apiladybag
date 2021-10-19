@@ -4,6 +4,7 @@ class CreateLineItemClones < ActiveRecord::Migration[6.1]
       t.integer :quantity, default: 1
       t.references :image, foreign_key: true
       t.string :image
+      t.string :product_name
       t.integer :price_cents
       t.bigint :cart_id
 

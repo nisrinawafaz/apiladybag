@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-    has_many :line_items, dependent: :destroy
+    has_many :line_items,-> { order(created_at: :asc) }, dependent: :destroy
 
     def add_product(image)
         current_item = line_items.find_by(image_id: image.id)

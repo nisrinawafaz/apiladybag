@@ -3,7 +3,7 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks or /feedbacks.json
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.all.order('created_at DESC')
     render json: @feedbacks
   end
 
